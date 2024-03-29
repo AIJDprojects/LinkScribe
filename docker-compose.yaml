@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: linkscribe-backend:latest
+    container_name: linkscribe-api
+    ports:
+      - 8000:8000
+    build:
+      context: Backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./Backend:/app 
+  frontend:
+    image: linkscribe-frontend:latest
+    container_name: linkScribe-web
+    ports:
+      - 8501:8501
+    build:
+      context: Frontend
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+    environment:
+      - API_URL=http://backend:8000
+    volumes:
+      - ./Frontend:/app

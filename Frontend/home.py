@@ -14,7 +14,12 @@ import streamlit as st
 import requests
 import json
 import time
+import os
 # ------
+
+# Setting the API url from the container LinkScribe-backend:latest
+API_URL = os.getenv('API_URL', 'http://localhost:8080')
+print("API_URL", API_URL)
 
 # Text constants
 Title = 'LinkScribe 📝'
@@ -44,7 +49,7 @@ space = ''
 def LS_model(url):
 
     # setting the api with the model
-    back_url = "http://localhost:8080/LScribe-Model/predict"
+    back_url = f"{API_URL}/LScribe-Model/predict"
 
     # input URL
     payload = json.dumps({
@@ -77,7 +82,7 @@ def LS_model(url):
 # """
 def LS_title(url):
     # setting the api with the model
-    back_url = "http://localhost:8080/webInfo/title"
+    back_url = f"{API_URL}/webInfo/title"
 
     # input URL
     payload = json.dumps({
@@ -115,7 +120,7 @@ def LS_title(url):
 # """
 def LS_Image(url):
     # setting the api with the model
-    back_url = "http://localhost:8080/webInfo/image"
+    back_url = f"{API_URL}/webInfo/image"
 
     # input URL
     payload = json.dumps({

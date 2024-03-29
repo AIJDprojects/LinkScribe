@@ -12,9 +12,10 @@ Date            Author          Modification
 # Libraries 
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import FileResponse, JSONResponse
-from pyppeteer import launch
 from pydantic import BaseModel
+import imgkit
 import os
+
 
 # Web Scraping libraries 
 from bs4 import BeautifulSoup
@@ -23,7 +24,7 @@ import requests
 
 
 # Package constants
-output_file = "page_preview.png"
+output_file = "page_preview.jpg"
 # -----
 
 
@@ -68,38 +69,6 @@ def webScraping(inUrl):
 """
 Project     :   Linkscribe
 Package     :   webScrap 
-Method      :   URL_preview   
-Description :   This method takes a screenshot from webpages
-Inputs      :   url --> URL for web preview screenshot
-Modification History: 
-*********************************************************
-Date            Author          Modification
-27-03-2024      jdmunoz         Creation
-*********************************************************
-"""
-async def URL_preview(url, output_file= output_file):
-    browser = await launch(headless=True)
-    page = await browser.newPage()
-
-    # set the resolution for screenshot
-    await page.setViewport({'width': 1920, 'height': 1080})
-
-    # accessing url
-    await page.goto(url)
-
-    # Scroll to the bottom of the page to load all content
-    await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-
-    # taking the screenshot
-    await page.screenshot({'path': output_file, 'fullPage': True})
-
-    print(f"Webpage preview saved as '{output_file}'")
-    await browser.close()
-
-
-"""
-Project     :   Linkscribe
-Package     :   webScrap 
 Method      :   delpreview   
 Description :   This method deletes the output_file 
 Modification History: 
@@ -125,8 +94,12 @@ Date            Author          Modification
 *********************************************************
 """
 def getTitle(url):
+
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+    }
     # send the get request to url 
-    response = requests.get(url)
+    response = requests.get(url,headers=headers)
 
  # Check if the request was successful
     if response.status_code == 200:       
@@ -143,10 +116,31 @@ def getTitle(url):
         else:
             return "Title not found"
     else:
-        return "Error fetching the URL"   
+        return f"Error fetching the URL status {response.status_code}"   
 
 # ------    
-       
+
+
+"""
+Project     :   Linkscribe
+Package     :   webScrap 
+Method      :   generate_url_to_image   
+Description :   This method takes a screenshot from webpages
+Inputs      :   url --> URL for web preview screenshot
+Modification History: 
+*********************************************************
+Date            Author          Modification
+27-03-2024      jdmunoz         Creation
+*********************************************************
+"""
+def generate_url_to_image(url, output_file=output_file):
+    try:
+        #print(html_content)
+        imgkit.from_url(url, output_file)
+
+        print(f"Image saved as '{output_file}'")
+    except Exception as e:
+        print(f"Error: {e}")     
 
 # creating the router for the API 
 router = APIRouter()
@@ -171,7 +165,8 @@ async def get_image(data: URLEntry):
 
     # getting the url and preview image 
     url_input = data.url_var()
-    await URL_preview(url_input)  
+
+    generate_url_to_image(url_input)
 
     # validation of the preview existence   
     if not os.path.exists(output_file):
