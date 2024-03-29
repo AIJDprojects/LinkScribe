@@ -18,8 +18,11 @@ import os
 # ------
 
 # Setting the API url from the container LinkScribe-backend:latest
-API_URL = os.getenv('API_URL', 'http://localhost:8080')
-print("API_URL", API_URL)
+#API_URL = os.getenv('API_URL', 'http://localhost:8080')
+#print("API_URL", API_URL)
+
+# For streamlit deployment 
+API_URL="http://localhost:8080"
 
 # Text constants
 Title = 'LinkScribe 📝'
