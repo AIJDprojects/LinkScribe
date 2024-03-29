@@ -22,7 +22,7 @@ import os
 #print("API_URL", API_URL)
 
 # For streamlit deployment 
-API_URL="http://localhost:8080"
+API_URL="http://localhost:8080" 
 
 # Text constants
 Title = 'LinkScribe 📝'
