@@ -1,2 +1,2 @@
 update
-install wkhtmltopdf
+install wkhtmltopdf -y
