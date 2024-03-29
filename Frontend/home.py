@@ -15,6 +15,7 @@ import requests
 import json
 import time
 import os
+import subprocess
 # ------
 
 # Setting the API url from the container LinkScribe-backend:latest
@@ -22,6 +23,7 @@ import os
 #print("API_URL", API_URL)
 
 # For streamlit deployment 
+subprocess.run(['python', '/Backend/main.py'])
 API_URL="http://localhost:8080" 
 
 # Text constants
