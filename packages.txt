@@ -1,2 +1,2 @@
-apt-get update
-apt-get install wkhtmltopdf -y
+update
+install wkhtmltopdf -y
