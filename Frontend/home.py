@@ -23,7 +23,9 @@ import subprocess
 #print("API_URL", API_URL)
 
 # For streamlit deployment 
-subprocess.run(['python', '/Backend/main.py'])
+
+subprocess.run(['sh', 'Backend/script.sh'])
+subprocess.run(['python', 'Backend/main.py'])
 API_URL="http://localhost:8080" 
 
 # Text constants

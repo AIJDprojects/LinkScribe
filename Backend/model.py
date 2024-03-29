@@ -118,7 +118,7 @@ class LinkScribeModel(Model):
     def __init__(self, framework: Framework = Framework.sklearn):
         # validate de model framework (by default sklearn)
         if framework == Framework.sklearn:
-            model_path = "models/sklearn/Linkscribe.pk"
+            model_path = "Backend/models/sklearn/Linkscribe.pk"
             version = 1
         else:
             raise ValueError(f"Framework {framework} not supported")
