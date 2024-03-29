@@ -6,7 +6,7 @@ is_package_installed() {
 }
 
 # List of required Python packages
-packages=("uvicorn" "fastapi" "numpy" "scikit-learn" "bs4" "requests" "imgkit")
+packages="uvicorn" "fastapi" "numpy" "scikit-learn" "bs4" "requests" "imgkit"
 
 # Navigate to the directory containing your Python code
 cd Backend
