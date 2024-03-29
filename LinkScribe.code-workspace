@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "Model"
+		},
+		{
+			"path": "Frontend"
+		},
+		{
+			"path": "Backend"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"joblib"
+		],
+		"liveServer.settings.multiRootWorkspaceName": "Frontend"
+	}
+}
