@@ -11,6 +11,6 @@ pip install bs4
 pip install requests
 pip install imgkit
 
-sudo apt-get update
-sudo apt-get install wkhtmltopdf -y
+apt-get update
+apt-get install wkhtmltopdf -y
 
