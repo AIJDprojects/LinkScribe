@@ -23,13 +23,13 @@ import subprocess
 #print("API_URL", API_URL)
 
 # For streamlit deployment 
-# subprocess.run(['sh', 'Frontend/script.sh'])
+subprocess.run(['sh', 'Frontend/script.sh'])
 subprocess.run(['python', 'Backend/main.py'])
 API_URL="http://localhost:8080" 
 
 # Text constants
 Title = 'LinkScribe 📝'
-home_text = 'Welcome to LinkScribe the app that allows you to fats research web content using ML (Machine Learning based model 🤖) to classifying any webpage into a general subject so you only choose the ones you are really interested about.'
+home_text = 'Welcome to LinkScribe the app that allows you to fast research web content using ML (Machine Learning based model 🤖) to classifying any webpage into a general subject so you only choose the ones you are really interested about.'
 input_request_tx = 'Write the URL of the web page you wish to process'
 about_title = '✍🏼 About'
 aboutText1 = 'LinkScribe Project 📝 was born as a requirement for the AI Specialization Course from Universidad Autonoma de Occidente Cali'
@@ -197,7 +197,7 @@ def Execution():
         st.subheader(result) 
         st.divider() 
             
-        with st.spinner("Crating preview ..."):            
+        with st.spinner("Creating preview ..."):            
             Image   = LS_Image(inURL)
             time.sleep(0.5)
 
